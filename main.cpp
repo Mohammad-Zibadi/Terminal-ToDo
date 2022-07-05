@@ -19,16 +19,16 @@ Task createNewTask ()
 {
 	string title, description, dueDate, priority;
 
-	cout << "Enter Your Task Title: ";
+	cout << "Task Title: ";
 	getline(cin >> ws, title);
-	cout << "Enter Your Task Description: ";
+	cout << "Task Description: ";
 	getline(cin >> ws, description);
 	
 	//ToDo show a calendar
 	
-	cout << "Enter Your Task Due Date Like (year/month/day hh:mm): ";
+	cout << "Task Due Date Like (year/month/day hh:mm): ";
 	getline(cin >> ws, dueDate);
-	cout << "Enter Your Task Priority (low, medium, high): ";
+	cout << "Task Priority (low, medium, high): ";
 	getline(cin >> ws, priority);
 	
 
@@ -64,7 +64,7 @@ int main(int argc, char** argv) {
 			}
 		
 			string command;
-			cout << "Options Are: (A, D)\n";
+			cout << "Options Are: (A, D, E, F)\n";
 			
 			cin >> command;
 			command = toLower(command);
@@ -77,7 +77,7 @@ int main(int argc, char** argv) {
 				save_or_exit = toLower(save_or_exit);
 					if(save_or_exit == "s"){
 						tasks.push_back(task);
-						cout << "Your Task Has Been Created Successfully!\n";
+						cout << "Done!\n\n";
 						continue;
 					}else if(save_or_exit == "q")
 						continue;
@@ -85,8 +85,56 @@ int main(int argc, char** argv) {
 				int task_number;
 				cout << "To Delete A Task, Enter Its Number.\n";
 				cin >> task_number;
-				tasks.erase(tasks.begin() + task_number-1);
-				cout << "done!\n";
+				task_number--;
+				tasks.erase(tasks.begin() + task_number);
+				cout << "Done!\n\n";
+			}else if(command == "e"){
+				int task_number;
+				cout << "To Edit A Task, Enter Its Number.\n";
+				cin >> task_number;
+				
+				string title, description, dueDate, priority;
+
+				cout << "New Task Title: ";
+				getline(cin >> ws, title);
+				cout << "New Task Description: ";
+				getline(cin >> ws, description);
+				
+				//ToDo show a calendar
+				
+				cout << "New Task Due Date Like (year/month/day hh:mm): ";
+				getline(cin >> ws, dueDate);
+				cout << "New Task Priority (low, medium, high): ";
+				getline(cin >> ws, priority);
+				task_number--;
+				tasks.at(task_number).setTitle(title);
+				tasks.at(task_number).setDescription(description);
+				tasks.at(task_number).setDueDate(dueDate);
+				tasks.at(task_number).setPriority(priority);
+				cout << "Done!\n\n";
+				continue;
+			}else if(command == "f"){
+				int task_number;
+				
+				cout << "To Done Or Undone A Task, Enter Its Number.\n";
+				cin >> task_number;
+				task_number--;
+				string title = tasks.at(task_number).getTitle();
+				if(title[0] != '*')
+					tasks.at(task_number).setTitle("*" + title);
+				else{
+					int i = 0;
+					for(auto ch : title){
+						if(i != 0)
+							title[i-1] = ch;
+						title[i] = '\0';
+						++i;
+					}
+					
+					tasks.at(task_number).setTitle(title);
+				}
+					
+				cout << "Done!\n\n";
 			}
 		}
 	}

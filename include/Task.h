@@ -11,8 +11,17 @@ using std::cout;
 class Task
 {
 public:
+	// initializing variables from the user console input
 	void getData(string, string, string, string);
 	void show();
+	void setTitle(string);
+	void setDescription(string);
+	void setDueDate(string);
+	void setPriority(string);
+	string getTitle();
+	string getDescription();
+	string getDueDate();
+	string getPriority();
 	
 private:
 	string m_title;
