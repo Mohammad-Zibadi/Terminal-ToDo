@@ -22,16 +22,16 @@ Task createNewTask ()
 {
 	string title, description, dueDate, priority;
 
-	cout << "Task Title: ";
+	cout << "Title: ";
 	getline(cin >> ws, title);
-	cout << "Task Description: ";
+	cout << "Description: ";
 	getline(cin >> ws, description);
 	
 	//ToDo show a calendar
 	
-	cout << "Task Due Date Like (2022/07/05 17:00): ";
+	cout << "Due Date Like (2022/07/05 17:00): ";
 	getline(cin >> ws, dueDate);
-	cout << "Task Priority (low, medium, high): ";
+	cout << "Priority (low, medium, high): ";
 	getline(cin >> ws, priority);
 	
 
@@ -147,12 +147,12 @@ int main(int argc, char** argv) {
 				if(command == "a"){
 					Task task = createNewTask();
 					string save_or_exit;
-					cout << "Enter S Key To Save The Task, Otherwise Enter Q Key To Exit!\n";
+					cout << "Enter S To Save, Otherwise Enter Q To Exit!\n";
 					cin >> save_or_exit;
 					save_or_exit = toLower(save_or_exit);
 						if(save_or_exit == "s"){
 							tasks.push_back(task);
-							cout << "Done!\n\n";
+							cout << "ُSaved!\n\n";
 							continue;
 						}else if(save_or_exit == "q")
 							continue;
@@ -162,7 +162,7 @@ int main(int argc, char** argv) {
 					cin >> task_number;
 					task_number--;
 					tasks.erase(tasks.begin() + task_number);
-					cout << "Done!\n\n";
+					cout << "Deleted!\n\n";
 				}else if(command == "e"){
 					int task_number;
 					cout << "To Edit A Task, Enter Its Number.\n";
@@ -170,23 +170,23 @@ int main(int argc, char** argv) {
 					
 					string title, description, dueDate, priority;
 	
-					cout << "New Task Title: ";
+					cout << "New Title: ";
 					getline(cin >> ws, title);
-					cout << "New Task Description: ";
+					cout << "New Description: ";
 					getline(cin >> ws, description);
 					
 					//ToDo show a calendar
 					
-					cout << "New Task Due Date Like (year/month/day hh:mm): ";
+					cout << "New Due Date Like (year/month/day hh:mm): ";
 					getline(cin >> ws, dueDate);
-					cout << "New Task Priority (low, medium, high): ";
+					cout << "New Priority (low, medium, high): ";
 					getline(cin >> ws, priority);
 					task_number--;
 					tasks.at(task_number).setTitle(title);
 					tasks.at(task_number).setDescription(description);
 					tasks.at(task_number).setDueDate(dueDate);
 					tasks.at(task_number).setPriority(priority);
-					cout << "Done!\n\n";
+					cout << "Edited!\n\n";
 					continue;
 				}else if(command == "f"){
 					int task_number;
